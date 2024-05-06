@@ -1,6 +1,6 @@
-# Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures
+# Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures
 
-This repository contains the implementation for the paper "Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
+This repository contains the implementation for the paper "Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
 
 [![arXiv](https://img.shields.io/badge/arXiv-2405.02095-b31b1b.svg)](https://arxiv.org/abs/2405.02095)
 
