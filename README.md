@@ -1,6 +1,8 @@
-# Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures
+# Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures
 
-This repository contains the implementation for the paper "Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
+This repository contains the implementation for the paper "Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
+
+[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-b31b1b.svg)](https://arxiv.org/abs/2405.02095)
 
 ## 🌍 Abstract
 
@@ -33,19 +35,13 @@ tqdm
 If you use this work, please cite:
 
 ```
-@InProceedings{10.1007/978-3-031-56281-5_2,
-	author="Martinez-Gil, Jorge",
-	editor="Bludau, Peter
-	and Ramler, Rudolf
-	and Winkler, Dietmar
-	and Bergsmann, Johannes",
-	title="Source Code Clone Detection Using Unsupervised Similarity Measures",
-	booktitle="Software Quality as a Foundation for Security",
-	year="2024",
-	publisher="Springer Nature Switzerland",
-	address="Cham",
-	pages="21--37",
-	isbn="978-3-031-56281-5"
+@misc{martinezgil2024advanced,
+      title={Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures}, 
+      author={Jorge Martinez-Gil},
+      year={2024},
+      eprint={2405.02095},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE}
 }
 ```
 
