@@ -2,6 +2,8 @@
 
 This repository contains the implementation for the paper "Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
 
+[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-b31b1b.svg)](https://arxiv.org/abs/2405.02095)
+
 ## 🌍 Abstract
 
 Accurately determining code similarity is crucial for many software development tasks, such as software maintenance and code duplicate identification. This research introduces an ensemble learning approach for code similarity assessment that combines multiple unsupervised similarity measures. The approach leverages the strengths of diverse similarity measures, mitigating individual weaknesses and improving overall performance. Preliminary results suggest that while Transformers-based CodeBERT excels with abundant training data, our ensemble approach performs comparably on specific small datasets, offering better interpretability and a lower carbon footprint.
