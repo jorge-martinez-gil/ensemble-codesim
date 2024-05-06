@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-[Martinez-Gil2024b] Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures, arXiv preprint arXiv:xxxx.xxxx, 2024
+[Martinez-Gil2024b] Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures, arXiv preprint arXiv:2405.02095, 2024
 
 @author: Jorge Martinez-Gil
 """
