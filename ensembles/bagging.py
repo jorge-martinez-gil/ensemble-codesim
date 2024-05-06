@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-[Martinez-Gil2024b] Source Code Clone Detection Using an Ensemble of Unsupervised Semantic Similarity Measures, arXiv preprint arXiv:xxxx.xxxx, 2024
+[Martinez-Gil2024b] Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures, arXiv preprint arXiv:2405.02095, 2024
 
 @author: Jorge Martinez-Gil
 """
@@ -32,9 +32,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # Define parameter grid for hyperparameter search
 param_grid = {
-    'n_estimators': [100],
-    'max_depth': [None],
-    'min_samples_split': [2]
+    'n_estimators': [100, 200, 300],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 4, 6]
 }
 
 # Create a Random Forest classifier
