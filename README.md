@@ -91,7 +91,24 @@ If you use this work, please cite:
       primaryClass={cs.SE}
 }
 ```
+---
+### Research that has cited this work
 
+1. **[An Enhanced Transformer-Based Framework for Interpretable Code Clone Detection](https://www.sciencedirect.com/science/article/pii/S0164121225000159)**
+   - **Authors:** M. Nashaat, R. Amin, A.H. Eid, R.F. Abdel-Kader
+   - **Journal:** *Journal of Systems and Software*, 2025 (Elsevier)
+   - **Abstract:** Code cloning is a common practice in software development for reusing code segments. This study proposes an enhanced transformer-based framework to improve interpretable clone detection.
+
+2. **[A Novel Method for Code Clone Detection Based on Minimally Random Kernel Convolutional Transform](https://ieeexplore.ieee.org/abstract/document/10731684/)**
+   - **Author:** M. Abdelkader
+   - **Journal:** *IEEE Access*, 2024
+   - **Abstract:** This paper introduces a novel approach for code clone detection using minimally random kernel convolutional transforms, aiming to enhance accuracy in software maintenance.
+
+3. **[Improving Source Code Similarity Detection Through GraphCodeBERT and Integration of Additional Features](https://arxiv.org/abs/2408.08903)**
+   - **Author:** J. Martinez-Gil
+   - **Journal:** *arXiv preprint arXiv:2408.08903*, 2024
+   - **Abstract:** This study presents a method for improving source code similarity detection by integrating additional output features into the classification process, leveraging GraphCodeBERT.
+---
 ## 📄 License
 
 The project is provided under the MIT License. 
