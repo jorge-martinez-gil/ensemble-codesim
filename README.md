@@ -82,13 +82,22 @@ tqdm
 If you use this work, please cite:
 
 ```
-@misc{martinezgil2024advanced,
-      title={Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures}, 
-      author={Jorge Martinez-Gil},
-      year={2024},
-      eprint={2405.02095},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE}
+@inproceedings{MartinezGil2025,
+  author    = {Jorge Martinez-Gil},
+  editor    = {Jannik Fischbach and
+               Rudolf Ramler and
+               Dietmar Winkler and
+               Johannes Bergsmann},
+  title     = {Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures},
+  booktitle = {Balancing Software Innovation and Regulatory Compliance - 17th International
+               Conference on Software Quality, {SWQD} 2025, Munich, Germany, May 20-22, 2025, Proceedings},
+  series    = {Lecture Notes in Business Information Processing},
+  volume    = {544},
+  pages     = {72--90},
+  year      = {2025},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-031-89277-6\_5},
+  url       = {https://link.springer.com/chapter/10.1007/978-3-031-89277-6\_5}
 }
 ```
 ---
