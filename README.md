@@ -2,9 +2,10 @@
 
 This repository contains the implementation for the paper "Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures" by Jorge Martinez-Gil. It focuses on evaluating code similarity using a novel ensemble learning approach, integrating multiple unsupervised similarity measures.
 
-[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-b31b1b.svg)](https://arxiv.org/abs/2405.02095)
+[![DOI: 10.1007/978-3-031-89277-6_5](https://img.shields.io/badge/DOI-10.1007%2F978--3--031--89277--6__5-red.svg)](https://doi.org/10.1007/978-3-031-89277-6_5)
+[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-2ebc4f.svg)](https://arxiv.org/abs/2405.02095)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
-[![Citations](https://img.shields.io/badge/citations-3-blue)](https://scholar.google.com/citations?view_op=view_citation&hl=en&citation_for_view=X1pRUYcAAAAJ:DTjSuSUbmXsC)
+[![Citations](https://img.shields.io/badge/citations-4-blue)](https://scholar.google.com/citations?view_op=view_citation&hl=en&citation_for_view=X1pRUYcAAAAJ:DTjSuSUbmXsC)
 
 ## 🌍 Abstract
 
