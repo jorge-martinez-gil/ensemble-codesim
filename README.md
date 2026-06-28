@@ -19,12 +19,13 @@
 4. [Repository Structure](#-repository-structure)
 5. [Installation](#-installation)
 6. [Usage](#-usage)
-7. [Results](#-results)
-8. [Dependencies](#-dependencies)
-9. [Citation](#-citation)
-10. [Research Citing This Work](#-research-citing-this-work)
-11. [Related Work](#-related-work)
-12. [License](#-license)
+7. [Tutorials & Educational Use](#-tutorials--educational-use)
+8. [Results](#-results)
+9. [Dependencies](#-dependencies)
+10. [Citation](#-citation)
+11. [Research Citing This Work](#-research-citing-this-work)
+12. [Related Work](#-related-work)
+13. [License](#-license)
 
 ---
 
@@ -153,6 +154,41 @@ print(f"Precision : {test_results['eval_precision']:.4f}")
 print(f"Recall    : {test_results['eval_recall']:.4f}")
 print(f"F1 Score  : {test_results['eval_f1']:.4f}")
 ```
+
+---
+
+## 🎓 Tutorials & Educational Use
+
+New to code clone detection, or want a runnable tour before using this repo as a
+baseline? The [`tutorials/`](tutorials/) folder is a self-contained, classroom-ready
+course that runs with **Python + NumPy only** (no GPU, no model downloads):
+
+| # | Notebook | Topic |
+|---|----------|-------|
+| 1 | [`01_what_are_code_clones`](tutorials/notebooks/01_what_are_code_clones.ipynb) | Type-1/2/3/4 clones, hard negatives, your first similarity score |
+| 2 | [`02_similarity_measures`](tutorials/notebooks/02_similarity_measures.ipynb) | The measure families, each one's blind spot, measure complementarity |
+| 3 | [`03_ensemble_and_interpretability`](tutorials/notebooks/03_ensemble_and_interpretability.ipynb) | Combining measures, evaluation on the repo's **real** data, explaining a decision |
+
+Also included:
+
+- [`lecture_notes.md`](tutorials/lecture_notes.md) — a slide-ready reading covering the theory, with references.
+- [`exercises.md`](tutorials/exercises.md) — graded exercises (beginner → capstone) with worked solutions.
+- [`examples/clone_pairs.py`](tutorials/examples/clone_pairs.py) — curated, labelled Type-1…4 and hard-negative pairs (Java + Python).
+- [`codesim_edu.py`](tutorials/codesim_edu.py) / [`eval_edu.py`](tutorials/eval_edu.py) — transparent, dependency-light similarity measures and metrics (ROC-AUC, F1, MCC, ensembles) you can read end to end.
+
+```bash
+pip install numpy            # required
+pip install jupyter matplotlib scikit-learn   # optional extras
+jupyter notebook tutorials/notebooks/
+```
+
+> Notebook 3 computes every number **live** from the committed feature files in
+> `outputs/` — nothing is fabricated, and where an ensemble does *not* beat the
+> best single measure, the notebook says so and explains why.
+
+Suitable for courses in software maintenance, empirical software engineering,
+code intelligence, and applied machine learning. See the
+[tutorials README](tutorials/README.md) for the full learning path.
 
 ---
 
