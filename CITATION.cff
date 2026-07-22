@@ -1,0 +1,52 @@
+# This file lets GitHub show a "Cite this repository" button and lets
+# reference managers import the citation. Add your ORCID where noted.
+cff-version: 1.2.0
+message: "If you use this software or its ideas, please cite the paper below and, where relevant, the software release."
+title: "ensemble-codesim: An Ensemble of Unsupervised Similarity Measures for Source Code Clone Detection (with the CodeSim toolkit)"
+abstract: >-
+  An open toolkit and study for source code clone detection that combines more
+  than twenty unsupervised similarity measures into a single, inspectable
+  ensemble. Includes the CodeSim Python package (a unified interface, ensembles,
+  evaluation metrics, and dataset loaders) and a reproducible evaluation on
+  BigCloneBench.
+type: software
+authors:
+  - family-names: "Martinez-Gil"
+    given-names: "Jorge"
+    affiliation: "Software Competence Center Hagenberg GmbH (SCCH)"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # add your ORCID here
+version: "0.1.0"
+date-released: "2026-07-22"
+license: MIT
+repository-code: "https://github.com/jorge-martinez-gil/ensemble-codesim"
+url: "https://github.com/jorge-martinez-gil/ensemble-codesim"
+keywords:
+  - "code clone detection"
+  - "source code similarity"
+  - "software maintenance"
+  - "ensemble learning"
+  - "plagiarism detection"
+  - "program representation"
+identifiers:
+  - type: doi
+    value: "10.1007/978-3-031-89277-6_5"
+    description: "Peer-reviewed paper (SWQD 2025)"
+  - type: other
+    value: "arXiv:2405.02095"
+    description: "Preprint"
+preferred-citation:
+  type: conference-paper
+  title: "Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures"
+  authors:
+    - family-names: "Martinez-Gil"
+      given-names: "Jorge"
+  collection-title: "Software Quality as a Foundation for Security (SWQD 2025)"
+  collection-type: "proceedings"
+  volume: 544
+  start: 72
+  end: 90
+  year: 2025
+  publisher:
+    name: "Springer"
+  doi: "10.1007/978-3-031-89277-6_5"
+  url: "https://link.springer.com/chapter/10.1007/978-3-031-89277-6_5"

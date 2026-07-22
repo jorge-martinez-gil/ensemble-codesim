@@ -1,290 +1,229 @@
 # 🔍 Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures
 
-> **Ensemble learning meets code clone detection** — combining multiple unsupervised similarity measures for robust, interpretable, and efficient source code clone identification.
+> **Ensemble learning meets code clone detection.** More than twenty unsupervised similarity measures, combined into one inspectable predictor, packaged as the installable **CodeSim** toolkit, and evaluated reproducibly on BigCloneBench.
 
 [![DOI](https://img.shields.io/badge/DOI-10.1007%2F978--3--031--89277--6__5-red.svg)](https://doi.org/10.1007/978-3-031-89277-6_5)
-[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-2ebc4f.svg)](https://arxiv.org/abs/2405.02095)
+[![arXiv](https://img.shields.io/badge/arXiv-2405.02095-b31b1b.svg)](https://arxiv.org/abs/2405.02095)
+[![Zenodo](https://img.shields.io/badge/Zenodo-DOI%20pending-blue.svg)](https://zenodo.org)
+[![tests](https://github.com/jorge-martinez-gil/ensemble-codesim/actions/workflows/tests.yml/badge.svg)](https://github.com/jorge-martinez-gil/ensemble-codesim/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Citations](https://img.shields.io/badge/citations-8-blue)](https://scholar.google.com/citations?view_op=view_citation&hl=en&citation_for_view=X1pRUYcAAAAJ:4pF9x-cDGsoC)
-[![Java](https://img.shields.io/badge/Java-85%25-orange.svg)](#)
-[![Python](https://img.shields.io/badge/Python-15%25-blue.svg)](#)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](#)
 
 ---
 
-## 📖 Table of Contents
+## 📌 Cite this work
 
-1. [Abstract](#-abstract)
-2. [Key Contributions](#-key-contributions)
-3. [Architecture Overview](#-architecture-overview)
-4. [Repository Structure](#-repository-structure)
-5. [Installation](#-installation)
-6. [Usage](#-usage)
-7. [Tutorials & Educational Use](#-tutorials--educational-use)
-8. [Results](#-results)
-9. [Dependencies](#-dependencies)
-10. [Citation](#-citation)
-11. [Research Citing This Work](#-research-citing-this-work)
-12. [Related Work](#-related-work)
-13. [License](#-license)
-
----
-
-## 🌍 Abstract
-
-Accurately determining code similarity is crucial for many software development tasks, such as software maintenance and code duplicate identification. This research introduces an **ensemble learning approach** that combines multiple unsupervised similarity measures to improve the detection of source code clones.
-
-Our method is:
-- 📐 **Accurate** — outperforms individual similarity metrics by leveraging their complementary strengths
-- ⚡ **Efficient** — designed to perform well on small datasets with reduced computational costs
-- 🔎 **Interpretable** — provides transparency into how similarity decisions are made
-- 🌱 **Sustainable** — low resource footprint compared to large transformer-based baselines
-
-> **Published at:** [SWQD 2025 – 17th International Conference on Software Quality](https://link.springer.com/chapter/10.1007/978-3-031-89277-6_5), Munich, Germany. Springer LNBIP, Vol. 544, pp. 72–90.
-
----
-
-## 🚀 Key Contributions
-
-| Contribution | Description |
-|---|---|
-| **Ensemble Framework** | Novel combination of multiple unsupervised code similarity measures into a single robust predictor |
-| **Benchmark Evaluation** | Rigorous evaluation on BigCloneBench and the Karnalim dataset |
-| **Lightweight Design** | No pre-training or GPU required — runs on standard hardware |
-| **Interpretability** | Each component similarity score is inspectable, enabling explainability |
-| **Open Source** | Full implementation, datasets, and results publicly available |
-
----
-
-## 🏗️ Architecture Overview
-
-```
-Source Code Pairs
-       │
-       ▼
-┌─────────────────────────────────────────────┐
-│           Similarity Measures               │
-│  ┌──────────┐ ┌──────────┐ ┌─────────────┐ │
-│  │ Token-   │ │  AST-    │ │  Semantic   │ │
-│  │ Based    │ │  Based   │ │  Metrics    │ │
-│  └──────────┘ └──────────┘ └─────────────┘ │
-└─────────────────────────────────────────────┘
-       │
-       ▼
-┌─────────────────────────────────────────────┐
-│         Ensemble Aggregation Layer          │
-│    (Voting / Weighted Combination)          │
-└─────────────────────────────────────────────┘
-       │
-       ▼
-   Clone / Non-Clone Decision
-```
-
----
-
-## 📁 Repository Structure
-
-```
-ensemble-codesim/
-├── baselines/              # Baseline models for comparison
-├── datasets/               # BigCloneBench & Karnalim datasets
-│   ├── BigCloneBench/
-│   │   ├── data.jsonl      # Code snippets
-│   │   ├── train.txt       # Clone pairs (train split)
-│   │   ├── valid.txt       # Clone pairs (validation split)
-│   │   └── test.txt        # Clone pairs (test split)
-├── ensembles/              # Ensemble combination strategies
-├── similarity/             # Individual similarity measure implementations
-├── utils/                  # Helper utilities
-├── outputs/                # Output files
-├── results/                # Experimental results
-├── exec-bigclonebench.py   # Run experiments on BigCloneBench
-├── exec-karnalim.py        # Run experiments on Karnalim dataset
-└── README.md
-```
-
----
-
-## ⚙️ Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/jorge-martinez-gil/ensemble-codesim.git
-cd ensemble-codesim
-
-# Install Python dependencies
-pip install numpy scikit-learn tqdm
-```
-
----
-
-## 🖥️ Usage
-
-### Running on BigCloneBench
-
-```bash
-python exec-bigclonebench.py
-```
-
-### Running on the Karnalim Dataset
-
-```bash
-python exec-karnalim.py
-```
-
-### Step-by-Step Workflow
-
-**1. Load Code Snippets**
-```python
-code_snippets = load_code_snippets('datasets/BigCloneBench/data.jsonl')
-```
-
-**2. Prepare Dataset Splits**
-```python
-train_dataset = prepare_dataset('datasets/BigCloneBench/train.txt', tokenizer, code_snippets)
-val_dataset   = prepare_dataset('datasets/BigCloneBench/valid.txt', tokenizer, code_snippets)
-test_dataset  = prepare_dataset('datasets/BigCloneBench/test.txt',  tokenizer, code_snippets)
-```
-
-**3. Train and Evaluate**
-```python
-trainer.train()
-test_results = trainer.evaluate(test_dataset)
-
-print(f"Precision : {test_results['eval_precision']:.4f}")
-print(f"Recall    : {test_results['eval_recall']:.4f}")
-print(f"F1 Score  : {test_results['eval_f1']:.4f}")
-```
-
----
-
-## 🎓 Tutorials & Educational Use
-
-New to code clone detection, or want a runnable tour before using this repo as a
-baseline? The [`tutorials/`](tutorials/) folder is a self-contained, classroom-ready
-course that runs with **Python + NumPy only** (no GPU, no model downloads):
-
-| # | Notebook | Topic |
-|---|----------|-------|
-| 1 | [`01_what_are_code_clones`](tutorials/notebooks/01_what_are_code_clones.ipynb) | Type-1/2/3/4 clones, hard negatives, your first similarity score |
-| 2 | [`02_similarity_measures`](tutorials/notebooks/02_similarity_measures.ipynb) | The measure families, each one's blind spot, measure complementarity |
-| 3 | [`03_ensemble_and_interpretability`](tutorials/notebooks/03_ensemble_and_interpretability.ipynb) | Combining measures, evaluation on the repo's **real** data, explaining a decision |
-
-Also included:
-
-- [`lecture_notes.md`](tutorials/lecture_notes.md) — a slide-ready reading covering the theory, with references.
-- [`exercises.md`](tutorials/exercises.md) — graded exercises (beginner → capstone) with worked solutions.
-- [`examples/clone_pairs.py`](tutorials/examples/clone_pairs.py) — curated, labelled Type-1…4 and hard-negative pairs (Java + Python).
-- [`codesim_edu.py`](tutorials/codesim_edu.py) / [`eval_edu.py`](tutorials/eval_edu.py) — transparent, dependency-light similarity measures and metrics (ROC-AUC, F1, MCC, ensembles) you can read end to end.
-
-```bash
-pip install numpy            # required
-pip install jupyter matplotlib scikit-learn   # optional extras
-jupyter notebook tutorials/notebooks/
-```
-
-> Notebook 3 computes every number **live** from the committed feature files in
-> `outputs/` — nothing is fabricated, and where an ensemble does *not* beat the
-> best single measure, the notebook says so and explains why.
-
-Suitable for courses in software maintenance, empirical software engineering,
-code intelligence, and applied machine learning. See the
-[tutorials README](tutorials/README.md) for the full learning path.
-
----
-
-## 📊 Results
-
-The ensemble approach consistently outperforms individual similarity measures. Key highlights from the paper:
-
-| Method | Precision | Recall | F1 Score |
-|---|---|---|---|
-| Single best measure | — | — | — |
-| **Ensemble (ours)** | **↑** | **↑** | **↑** |
-| GraphCodeBERT baseline | high | high | high (GPU needed) |
-
-> 💡 Our ensemble achieves **competitive F1 scores** against transformer-based models while requiring **no GPU** and being **fully interpretable**. See the full results in the paper or the `results/` directory.
-
----
-
-## 📦 Dependencies
-
-```
-Python  ≥ 3.x
-Java    ≥ 8
-NumPy
-scikit-learn
-tqdm
-```
-
----
-
-## 📚 Citation
-
-If this work is useful for your research, please cite:
+If this repository helps your research, please cite the paper:
 
 ```bibtex
 @inproceedings{MartinezGil2025,
   author    = {Jorge Martinez-Gil},
-  editor    = {Jannik Fischbach and
-               Rudolf Ramler and
-               Dietmar Winkler and
-               Johannes Bergsmann},
-  title     = {Advanced Detection of Source Code Clones via an Ensemble of Unsupervised
-               Similarity Measures},
-  booktitle = {Balancing Software Innovation and Regulatory Compliance - 17th International
-               Conference on Software Quality, {SWQD} 2025, Munich, Germany,
-               May 20--22, 2025, Proceedings},
+  title     = {Advanced Detection of Source Code Clones via an Ensemble of
+               Unsupervised Similarity Measures},
+  booktitle = {Software Quality (SWQD 2025)},
   series    = {Lecture Notes in Business Information Processing},
   volume    = {544},
   pages     = {72--90},
   year      = {2025},
   publisher = {Springer},
-  doi       = {10.1007/978-3-031-89277-6\_5},
-  url       = {https://link.springer.com/chapter/10.1007/978-3-031-89277-6\_5}
+  doi       = {10.1007/978-3-031-89277-6\_5}
 }
 ```
 
-> 📄 A preprint is freely available on [arXiv:2405.02095](https://arxiv.org/abs/2405.02095).
+GitHub also shows a **"Cite this repository"** button (top-right, from
+[`CITATION.cff`](CITATION.cff)) for one-click import into your reference manager.
+A preprint is on [arXiv:2405.02095](https://arxiv.org/abs/2405.02095).
 
 ---
 
-## 🗂️ Research Citing This Work
+## 📖 Contents
 
-This work has already been cited by the following publications:
-
-1. **[An Enhanced Transformer-Based Framework for Interpretable Code Clone Detection](https://www.sciencedirect.com/science/article/pii/S0164121225000159)**
-   - **Authors:** M. Nashaat, R. Amin, A.H. Eid, R.F. Abdel-Kader
-   - **Venue:** *Journal of Systems and Software*, Elsevier, 2025
-   - Proposes an enhanced transformer-based framework for interpretable code clone detection.
-
-2. **[A Novel Method for Code Clone Detection Based on Minimally Random Kernel Convolutional Transform](https://ieeexplore.ieee.org/abstract/document/10731684/)**
-   - **Author:** M. Abdelkader
-   - **Venue:** *IEEE Access*, 2024
-   - Introduces a novel convolution-transform-based approach for code clone detection.
-
-3. **[Improving Source Code Similarity Detection Through GraphCodeBERT and Integration of Additional Features](https://arxiv.org/abs/2408.08903)**
-   - **Author:** J. Martinez-Gil
-   - **Venue:** *arXiv preprint*, 2024
-   - Extends the present work by integrating additional output features with GraphCodeBERT.
+1. [Overview](#-overview)
+2. [The CodeSim toolkit](#-the-codesim-toolkit)
+3. [Install](#-install)
+4. [Quick start](#-quick-start)
+5. [Similarity measures](#-similarity-measures)
+6. [Reproducible results](#-reproducible-results)
+7. [Tutorials](#-tutorials)
+8. [Research citing this work](#-research-citing-this-work)
+9. [How to cite the software](#-how-to-cite-the-software)
+10. [License](#-license)
 
 ---
 
-## 🔗 Related Work
+## 🌍 Overview
 
-If you are interested in code clone detection and source code similarity, you may also find these resources relevant:
+Judging how similar two pieces of source code are sits at the root of many
+software tasks: clone detection, plagiarism checking, vulnerability propagation,
+license auditing, and code search. Decades of research have produced a large,
+scattered set of similarity measures, from character edit distance to program
+dependence graph matching to embeddings from pre-trained models. No single
+measure wins across the four clone types, because each rests on a different view
+of what a program is, and each has a blind spot.
 
-- [BigCloneBench](https://github.com/jeffsvajlenko/BigCloneBench) — the main benchmark dataset used in this work
-- [GraphCodeBERT](https://github.com/microsoft/CodeBERT/tree/master/GraphCodeBERT) — a strong transformer baseline for code understanding
-- [arXiv:2405.02095](https://arxiv.org/abs/2405.02095) — preprint version of this paper
+This project turns that variety into an advantage. It scores a code pair with
+many unsupervised measures at once, forming a feature vector in measure space,
+then learns to combine those scores into one decision. The result is:
+
+- 📐 **Accurate.** A learned ensemble far outperforms the best single measure.
+- ⚡ **Efficient.** The base measures run on standard hardware with no GPU.
+- 🔎 **Inspectable.** Feature importances show which measures drove a decision.
+- 🌱 **Light.** The core needs only NumPy and scikit-learn.
+
+> **Published at** [SWQD 2025 (17th Int. Conf. on Software Quality)](https://link.springer.com/chapter/10.1007/978-3-031-89277-6_5), Springer LNBIP vol. 544, pp. 72-90.
+
+---
+
+## 🧰 The CodeSim toolkit
+
+`CodeSim` is the reusable core of this project: one interface over every measure,
+plus ensembles, evaluation metrics, dataset loaders, and a command-line tool. A
+similarity measure is treated as a function that returns a score in `[0, 1]`, so
+a Levenshtein distance and a transformer embedding are called the same way.
+
+```
+codesim/
+├── core.py         # similarity(), feature_vector(), feature_matrix()
+├── registry.py     # every measure with its family and metadata
+├── ensemble.py     # unsupervised and supervised (inspectable) ensembles
+├── evaluation.py   # precision, recall, F1, MCC, ROC-AUC, threshold tuning
+├── datasets.py     # BigCloneBench and folder-corpus loaders
+├── cli.py          # the `codesim` command
+└── measures/       # textual, token, structural, learned, behavioral
+```
+
+The original study scripts (`exec-bigclonebench.py`, `exec-karnalim.py`, the
+`similarity/` and `ensembles/` modules) remain in place; `CodeSim` gives their
+measures a clean, tested, installable home.
+
+---
+
+## ⚙️ Install
+
+```bash
+git clone https://github.com/jorge-martinez-gil/ensemble-codesim.git
+cd ensemble-codesim
+
+pip install -e .                 # base: 16 measures, ensembles, evaluation
+pip install -e ".[structural]"   # adds the program-dependence-graph measure
+pip install -e ".[learned]"      # adds transformer and paragraph-vector measures
+pip install -e ".[all]"          # everything
+```
+
+The base install needs only NumPy and scikit-learn. Heavier measures load their
+backend on demand and report a clear message when a dependency is absent.
+
+---
+
+## 🖥️ Quick start
+
+```python
+import codesim
+
+# One pair, one measure.
+codesim.similarity(code_a, code_b, measure="jaccard")     # -> 0.83
+
+# The full feature vector: one score per base measure.
+from codesim.core import feature_vector
+feature_vector(code_a, code_b)          # numpy array, length 16
+
+# A supervised ensemble that learns the combiner and reports what it used.
+from codesim.ensemble import SupervisedEnsemble
+ens = SupervisedEnsemble(model="random_forest").fit_pairs(pairs, labels)
+ens.importances()          # {"fcall": 0.16, "jaccard": 0.07, ...}
+```
+
+From the command line:
+
+```bash
+codesim list                                    # measures grouped per family
+codesim compare a.java b.java --measure tfidf   # score two files
+codesim vector a.java b.java                     # score with every base measure
+codesim evaluate --data data.jsonl --pairs test.txt --measure tfidf --tune
+```
+
+---
+
+## 🧩 Similarity measures
+
+Measures are organized on two axes: the program representation and the
+comparison operator.
+
+| Family | Representation | Operator | Measures |
+|---|---|---|---|
+| Textual | characters, lines, fingerprints | edit distance, LCS, string tiling, fingerprint overlap | levenshtein, lcs, seqratio, fuzzy, linediff, ngram, winnowing, rollinghash, gst |
+| Token | token bags, sets, tf-idf | set overlap, cosine | bow, tfidf, jaccard, tokentype, fcall |
+| Structural | metric vectors, adjacency and dependence graphs | vector cosine, graph edit distance | metrics, graph, pdg |
+| Learned | pre-trained or paragraph embeddings | cosine over learned vectors | codebert, doc2vec, image |
+| Behavioral | runtime input/output | output agreement | execution |
+
+Run `codesim list` to see each measure with the representation it compares, the
+operator it applies, the clone types it targets, and any optional dependency.
+
+---
+
+## 📊 Reproducible results
+
+The numbers below come from `paper/analyze.py`, computed on the committed
+BigCloneBench feature file after removing duplicate rows that would otherwise
+leak between training and test (14,672 unique pairs: 2,172 clones, 12,500
+non-clones). Rerun the script to regenerate every value and figure.
+
+| Method | Precision | Recall | F1 | ROC-AUC |
+|---|---|---|---|---|
+| Best single measure (function-call overlap) | 0.53 | 0.51 | 0.52 | 0.79 |
+| Naive mean over all measures | | | 0.36 | 0.66 |
+| Selective mean (top six on ROC-AUC) | | | 0.47 | 0.76 |
+| Gradient boosting (default) | 0.86 | 0.50 | 0.63 | 0.91 |
+| **Random forest (held-out split)** | **0.99** | **0.90** | **0.94** | **0.99** |
+| Random forest (5-fold cross-validation) | | | 0.96 ± 0.01 | 0.997 |
+
+Two findings stand out. A learned ensemble nearly doubles the F1 of the best
+single measure. And a naive average of all measures loses, because weak,
+near-saturated measures dilute the signal; the value of a learned combiner is
+that it can down-weight them. The measures carry a mean pairwise correlation of
+only 0.25, which is the quantitative reason their combination pays off.
+
+---
+
+## 🎓 Tutorials
+
+The [`tutorials/`](tutorials/) folder is a runnable, classroom-ready course that
+needs only Python and NumPy:
+
+| # | Notebook | Topic |
+|---|---|---|
+| 1 | `01_what_are_code_clones` | Type-1 to Type-4 clones, hard negatives, a first score |
+| 2 | `02_similarity_measures` | measure families, each one's blind spot, complementarity |
+| 3 | `03_ensemble_and_interpretability` | combining measures, evaluation on real data, explaining a decision |
+
+Also included: slide-ready lecture notes, graded exercises with solutions, and a
+labelled set of Type-1 to Type-4 clone pairs.
+
+---
+
+## 🗂️ Research citing this work
+
+1. **[An Enhanced Transformer-Based Framework for Interpretable Code Clone Detection](https://www.sciencedirect.com/science/article/pii/S0164121225000159)**. M. Nashaat, R. Amin, A.H. Eid, R.F. Abdel-Kader. *Journal of Systems and Software*, Elsevier, 2025.
+2. **[A Novel Method for Code Clone Detection Based on Minimally Random Kernel Convolutional Transform](https://ieeexplore.ieee.org/abstract/document/10731684/)**. M. Abdelkader. *IEEE Access*, 2024.
+3. **[Improving Source Code Similarity Detection Through GraphCodeBERT and Integration of Additional Features](https://arxiv.org/abs/2408.08903)**. J. Martinez-Gil. *arXiv preprint*, 2024.
+
+---
+
+## 🔗 How to cite the software
+
+Beyond the paper, you can cite the software release itself. Once a Zenodo DOI is
+minted for a tagged release (see [`docs/GROWTH_PLAYBOOK.md`](docs/GROWTH_PLAYBOOK.md)),
+add it here and swap the Zenodo badge above for the real DOI badge. Until then,
+the [`CITATION.cff`](CITATION.cff) file and the paper citation above are the way
+to credit this work.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
+MIT. See [LICENSE](LICENSE).
 
 <p align="center">
-  <i>If you find this repository useful, please consider ⭐ starring it and citing the paper — it helps the research reach a wider audience!</i>
+<i>If you find this useful, a ⭐ helps others discover it, and a citation helps the research reach a wider audience.</i>
 </p>

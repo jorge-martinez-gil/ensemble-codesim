@@ -1,0 +1,28 @@
+# Core dependencies for the CodeSim toolkit and the base experiments.
+# These alone run the 16 base measures, the ensembles, and the evaluation.
+numpy>=1.21
+scikit-learn>=1.0
+tqdm>=4.60
+
+# ---------------------------------------------------------------------------
+# Optional dependencies for the heavier measures. Install the ones you need.
+#
+#   Structural (program dependence graph):
+#     javalang>=0.13
+#     networkx>=2.6
+#
+#   Learned (transformer and paragraph-vector embeddings):
+#     torch>=1.10
+#     transformers>=4.10
+#     gensim>=4.0
+#     nltk>=3.6
+#
+#   Imaging (perceptual hash of rendered code):
+#     Pillow>=9.0
+#     imagehash>=4.2
+#
+#   Lexer (higher-fidelity token classes):
+#     pygments>=2.10
+#
+# The original boosting experiment additionally uses xgboost (and, on GPU,
+# RAPIDS cudf). The random-forest ensemble needs only scikit-learn above.

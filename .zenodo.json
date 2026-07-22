@@ -1,0 +1,39 @@
+{
+  "title": "ensemble-codesim: An Ensemble of Unsupervised Similarity Measures for Source Code Clone Detection (with the CodeSim toolkit)",
+  "description": "An open toolkit and study for source code clone detection that combines more than twenty unsupervised similarity measures into a single, inspectable ensemble. The release includes the CodeSim Python package (one interface over textual, token, structural, learned, and behavioral measures, plus ensembles, evaluation metrics, dataset loaders, and a command-line interface) and a reproducible evaluation on BigCloneBench. Companion paper: Advanced Detection of Source Code Clones via an Ensemble of Unsupervised Similarity Measures (SWQD 2025).",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Martinez-Gil, Jorge",
+      "affiliation": "Software Competence Center Hagenberg GmbH (SCCH)"
+    }
+  ],
+  "keywords": [
+    "code clone detection",
+    "source code similarity",
+    "software maintenance",
+    "ensemble learning",
+    "plagiarism detection",
+    "program representation",
+    "BigCloneBench"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1007/978-3-031-89277-6_5",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "arXiv:2405.02095",
+      "relation": "isSupplementTo",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "https://github.com/jorge-martinez-gil/ensemble-codesim",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

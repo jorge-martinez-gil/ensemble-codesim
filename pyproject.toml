@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codesim"
+version = "0.1.0"
+description = "A unified toolkit for source code similarity and clone detection"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Jorge Martinez-Gil" }]
+keywords = [
+    "code clone detection",
+    "source code similarity",
+    "software maintenance",
+    "plagiarism detection",
+    "ensemble learning",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Quality Assurance",
+    "Intended Audience :: Science/Research",
+]
+dependencies = [
+    "numpy>=1.21",
+    "scikit-learn>=1.0",
+]
+
+[project.optional-dependencies]
+structural = ["javalang>=0.13", "networkx>=2.6"]
+learned = ["torch>=1.10", "transformers>=4.10", "gensim>=4.0", "nltk>=3.6"]
+imaging = ["Pillow>=9.0", "imagehash>=4.2"]
+lexer = ["pygments>=2.10"]
+all = [
+    "javalang>=0.13", "networkx>=2.6",
+    "torch>=1.10", "transformers>=4.10", "gensim>=4.0", "nltk>=3.6",
+    "Pillow>=9.0", "imagehash>=4.2", "pygments>=2.10",
+]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/jorge-martinez-gil/ensemble-codesim"
+Paper = "https://doi.org/10.1007/978-3-031-89277-6_5"
+
+[project.scripts]
+codesim = "codesim.cli:main"
+
+[tool.setuptools]
+packages = ["codesim", "codesim.measures"]
